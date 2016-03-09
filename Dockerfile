@@ -28,7 +28,7 @@ RUN mkdir -p /cache && \
 	apt-get install --no-install-recommends -y \
 		python python3 \
 		python-pip python-virtualenv virtualenv \
-		gcc libffi-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev python-dev python3-dev \
+		gcc libffi-dev libjpeg-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev python-dev python3-dev \
 		libcurl3-gnutls && \
 	apt-get download git && dpkg -x git_* / && rm git_* && \
 	apt-get clean && \
