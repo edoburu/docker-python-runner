@@ -14,6 +14,7 @@
 # NOTE that each RUN instruction creates a new image layer, hence
 # the single RUN command that combines all steps. Many unneeded files
 # are removed afterwards to keep the image size smaller.
+# Git is installed without the perl-modules which avoids another 100MB.
 
 FROM debian:jessie
 MAINTAINER opensource@edoburu.nl
@@ -27,7 +28,9 @@ RUN mkdir -p /cache && \
 	apt-get install --no-install-recommends -y \
 		python python3 \
 		python-pip python-virtualenv virtualenv \
-		gcc libffi-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev python-dev python3-dev && \
+		gcc libffi-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev python-dev python3-dev \
+		libcurl3-gnutls && \
+	apt-get download git && dpkg -x git_* / && rm git_* && \
 	apt-get clean && \
 	cp -R /usr/share/locale/en\@* /tmp/ && rm -rf /usr/share/locale/* && mv /tmp/en\@* /usr/share/locale/ && \
     rm -rf /usr/share/doc/* /var/lib/apt/lists/* /var/cache/debconf/*-old && \
