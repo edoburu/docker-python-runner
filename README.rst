@@ -4,11 +4,11 @@ Python Runner for Docker
 This image can be used to run a Python project (e.g. unit tests)
 and install Python packages that require C-extensions.
 
-All packages are available to install projects
-such as: ``Pillow``, ``psycopg2``, ``pylibmc``, ``lxml``, ``cffi``, ``reportlab``.
-
 The image consists of a base Debian jessie install,
-with Both Python 2.7, Python 3.4 and development packages added.
+with both Python 2.7, Python 3.4 and development packages added
+to install projects such as: : ``Pillow``, ``psycopg2``, ``pylibmc``,
+``lxml``, ``cffi``, ``reportlab``.
+
 Python system packages are kept to a minimum, with only
 ``pip``, ``setuptools``, ``wheel`` and ``virtualenv`` installed system-wide.
 A minimalistic ``git`` install is present too, to support ``pip install -e git+...``.
@@ -52,5 +52,5 @@ You can use the container in the ``.gitlab-ci.yml`` file::
 The virtualenv is not really needed as the image is already clean.
 However, it makes sure the packages are installed in the ``/build`` folder,
 which makes it easier to debug failed builds later.
-When not using a virtualenv, add ``--src=..`` to pip to avoid installing
-any editable packages in the current project folder.
+When not using a virtualenv, use ``pip install --src=.. -r src/requirements.txt``
+to avoid installing any editable packages in the current project folder.
