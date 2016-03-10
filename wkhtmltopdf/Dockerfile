@@ -1,6 +1,6 @@
 # Extra package for projects that need `wkhtmltopdf` as well.
 # TO build: docker build -t edoburu/python-runner:wkhtmltopdf .
-FROM edoburu/python-runner:latest
+FROM edoburu/python-runner:base
 RUN apt-get update && \
 	apt-get install -y xz-utils libxext6 fontconfig libxrender1 && \
 	python -c 'import urllib; urllib.urlretrieve("http://download.gna.org/wkhtmltopdf/0.12/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz", "wkhtmltox.tar.xz")' && \
