@@ -24,11 +24,13 @@ Building the containers
 
     docker build -t edoburu/python-runner:base base/
     docker build -t edoburu/python-runner:wkhtmltopdf wkhtmltopdf/
+    docker tag edoburu/python-runner:base edoburu/python-runner:latest
 
 Updating on dockerhub::
 
     docker login
     docker push edoburu/python-runner:base
+    docker push edoburu/python-runner:latest
     docker push edoburu/python-runner:wkhtmltopdf
 
 Usage in GitLab
