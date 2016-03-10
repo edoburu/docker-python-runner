@@ -54,5 +54,3 @@ You can use the container in the ``.gitlab-ci.yml`` file::
 The virtualenv is not really needed as the image is already clean.
 However, it makes sure the packages are installed in the ``/build`` folder,
 which makes it easier to debug failed builds later.
-When not using a virtualenv, use ``pip install --src=.. -r src/requirements.txt``
-to avoid installing any editable packages in the current project folder.
