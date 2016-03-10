@@ -16,11 +16,13 @@
 # - Each RUN instruction creates a new image layer, hence the single RUN command that combines all steps.
 # - Many unneeded files are removed afterwards to keep the image size smaller.
 # - Git is extracted over the filesystem to avoid perl dependencies, avoiding another 100MB.
+# - The ssh client is included to support ansible on deployment
 
 FROM debian:jessie
 MAINTAINER opensource@edoburu.nl
 ENV DEBIAN_FRONTEND=noninteractive \
-    PIP_CACHE_DIR=/cache
+    XDG_CACHE_HOME=/cache \
+    PIP_CACHE_DIR=/cache/pip
 RUN mkdir -p /cache && \
 	sh -c 'echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup' && \
 	sh -c 'echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache' && \
@@ -29,7 +31,7 @@ RUN mkdir -p /cache && \
 	apt-get install --no-install-recommends -y \
 		python python3 python-setuptools python3-setuptools \
 		make gcc libffi-dev libgeoip1 libjpeg-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev python-dev python3-dev \
-		libcurl3-gnutls ca-certificates && \
+		openssh-client libcurl3-gnutls ca-certificates && \
 	apt-get download git && dpkg -x git_* / && rm git_* && \
 	apt-get clean && \
 	cp -R /usr/share/locale/en\@* /tmp/ && rm -rf /usr/share/locale/* && mv /tmp/en\@* /usr/share/locale/ && \
