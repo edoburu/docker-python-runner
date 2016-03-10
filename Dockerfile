@@ -28,7 +28,7 @@ RUN mkdir -p /cache && \
 	apt-get update && \
 	apt-get install --no-install-recommends -y \
 		python python3 python-setuptools python3-setuptools \
-		make gcc libffi-dev libjpeg-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev python-dev python3-dev \
+		make gcc libffi-dev libgeoip1 libjpeg-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev python-dev python3-dev \
 		libcurl3-gnutls ca-certificates && \
 	apt-get download git && dpkg -x git_* / && rm git_* && \
 	apt-get clean && \
