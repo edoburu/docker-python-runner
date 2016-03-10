@@ -44,11 +44,13 @@ You can use the container in the ``.gitlab-ci.yml`` file::
     test:
       type: test
       script:
-      - pip install --src=/ -r src/requirements.txt
+      - virtualenv env
+      - source env/bin/activate
+      - pip install -r src/requirements.txt
       - ./src/runtests.py
 
-The ``--src`` argument avoids installing the editable packages in the current folder,
-avoiding conflicts with your current build directory.
-You may also choose to install a virtualenv first,
-though the limited system-wide packages avoid this need.
-
+The virtualenv is not really needed as the image is already clean.
+However, it makes sure the packages are installed in the ``/build`` folder,
+which makes it easier to debug failed builds later.
+When not using a virtualenv, add ``--src=..`` to pip to avoid installing
+any editable packages in the current project folder.
