@@ -86,9 +86,12 @@ An easy way to make sure the Docker process can access SSH keys,
 is by exposing them via a mounted volume.
 For example, add to ``config.toml``:
 
-    .. code-block:: config
+.. code-block:: INI
 
-        ...
+    [[runners]]
+        executor = "docker"
+        # ...
+
         [runners.docker]
           # The default image, if none specified
           image = "edoburu/python-runner"
