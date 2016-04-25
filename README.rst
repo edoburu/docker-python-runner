@@ -82,21 +82,25 @@ For deployment, you can use the other image types::
       - make html
       - rsync -av _build/html/ /exported/docs/$(basename $CI_PROJECT_DIR)
 
-.. tip:: Export the volumes for SSH keys in ``config.yoml``:
+An easy way to make sure the Docker process can access SSH keys,
+is by exposing them via a mounted volume.
+For example, add to ``config.toml``:
 
-    ...
-    [runners.docker]
-      # The default image, if none specified
-      image = "edoburu/python-runner"
+    .. code-block:: config
 
-      # Make sure the image can't become root on the host machine
-      # Accessed files must be owned by the user Docker runs as.
-      privileged = false
-      cap_drop = ["DAC_OVERRIDE"]
+        ...
+        [runners.docker]
+          # The default image, if none specified
+          image = "edoburu/python-runner"
 
-      # Share pip cache files, provide deployment key 
-      volumes = [ 
-          "/cache",
-          "/sites/docs/public_html:/exported/docs:rw",
-          "/home/deploy/.ssh/:/root/.ssh:ro"
-      ]
+          # Make sure the image can't become root on the host machine
+          # Accessed files must be owned by the user Docker runs as.
+          privileged = false
+          cap_drop = ["DAC_OVERRIDE"]
+
+          # Share pip cache files, provide deployment key
+          volumes = [
+              "/cache",
+              "/sites/docs/public_html:/exported/docs:rw",
+              "/home/deploy/.ssh/:/root/.ssh:ro"
+          ]
