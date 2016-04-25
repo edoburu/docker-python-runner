@@ -86,7 +86,7 @@ For deployment, you can use the other image types:
       script:
       - cd docs
       - make html
-      - rsync -av _build/html/ /exported/docs/$(basename $CI_PROJECT_DIR)
+      - rsync -av --delete _build/html/ /exported/docs/$(basename $CI_PROJECT_DIR)
 
 An easy way to make sure the Docker process can access SSH keys,
 is by exposing them via a mounted volume.
