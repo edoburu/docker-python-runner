@@ -16,7 +16,7 @@
 # - Each RUN instruction creates a new image layer, hence the single RUN command that combines all steps.
 # - Many unneeded files are removed afterwards to keep the image size smaller.
 # - Git is extracted over the filesystem to avoid perl dependencies, avoiding another 100MB.
-# - The ssh client is included to support ansible on deployment
+# - The ssh client is included to support git+ssh URLs
 
 FROM debian:jessie
 MAINTAINER opensource@edoburu.nl
@@ -30,8 +30,8 @@ RUN mkdir -p /cache && \
 	apt-get update && \
 	apt-get install --no-install-recommends -y \
 		python python3 python-setuptools python3-setuptools \
-		make gcc libffi-dev libgeoip1 libjpeg-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev libyaml-dev python-dev python3-dev \
-		openssh-client libcurl3-gnutls ca-certificates && \
+		make gcc pkg-config libffi-dev libgeoip1 libjpeg-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev libyaml-dev python-dev python3-dev \
+		openssh-client libcurl3-gnutls ca-certificates rsync && \
 	apt-get download git && dpkg -x git_* / && rm git_* && \
 	apt-get clean && \
 	cp -R /usr/share/locale/en\@* /tmp/ && rm -rf /usr/share/locale/* && mv /tmp/en\@* /usr/share/locale/ && \
