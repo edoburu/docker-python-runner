@@ -20,7 +20,7 @@ which is the default volume in GitLab where persistent storage is mounted.
 Building the containers
 -----------------------
 
-::
+.. code-block:: bash
 
     docker build -t edoburu/python-runner:base base/
     docker build -t edoburu/python-runner:ansible ansible/
@@ -28,7 +28,9 @@ Building the containers
     docker build -t edoburu/python-runner:wkhtmltopdf wkhtmltopdf/
     docker tag edoburu/python-runner:base edoburu/python-runner:latest
 
-Updating on dockerhub::
+Updating on dockerhub:
+
+.. code-block:: bash
 
     docker login
     docker push edoburu/python-runner:base
@@ -40,7 +42,9 @@ Updating on dockerhub::
 Usage in GitLab
 ---------------
 
-You can use the container in the ``.gitlab-ci.yml`` file::
+You can use the container in the ``.gitlab-ci.yml`` file:
+
+.. code-block:: yaml
 
     image: edoburu/python-runner:base
 
@@ -60,7 +64,9 @@ which makes it easier to debug failed builds later.
 Deployment
 ~~~~~~~~~~
 
-For deployment, you can use the other image types::
+For deployment, you can use the other image types:
+
+.. code-block:: yaml
 
     # Deploy to test server
     deploy_beta:
