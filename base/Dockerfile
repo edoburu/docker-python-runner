@@ -31,7 +31,7 @@ RUN mkdir -p /cache && \
 	apt-get install --no-install-recommends -y \
 		python python3 python-setuptools python3-setuptools \
 		make gcc pkg-config libffi-dev libgeoip1 libjpeg-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev libyaml-dev python-dev python3-dev \
-		openssh-client libcurl3-gnutls ca-certificates rsync && \
+		openssh-client libcurl3-gnutls ca-certificates gettext rsync && \
 	apt-get download git && dpkg -x git_* / && rm git_* && \
 	apt-get clean && \
 	cp -R /usr/share/locale/en\@* /tmp/ && rm -rf /usr/share/locale/* && mv /tmp/en\@* /usr/share/locale/ && \
