@@ -9,7 +9,7 @@ stages:
 build_image:
   stage: build
   tags:
-  - docker-builder
+  - container-builder
   script:
   - docker build -t edoburu/python-runner:base base/
   - docker build -t edoburu/python-runner:ansible ansible/
@@ -20,7 +20,7 @@ build_image:
 push_image:
   stage: deploy
   tags:
-  - docker-builder
+  - container-builder
   script:
   - docker login
   - docker push edoburu/python-runner:base
