@@ -1,7 +1,4 @@
 ---
-before_script:
-  - docker info
-
 stages:
 - build
 - deploy
