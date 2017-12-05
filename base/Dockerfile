@@ -18,7 +18,7 @@
 # - Git is extracted over the filesystem to avoid perl dependencies, avoiding another 100MB.
 # - The ssh client is included to support git+ssh URLs
 
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER opensource@edoburu.nl
 ENV DEBIAN_FRONTEND=noninteractive \
     XDG_CACHE_HOME=/cache \
