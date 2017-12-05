@@ -11,14 +11,14 @@ build_image:
   - docker build -t edoburu/python-runner:ansible ansible/
   - docker build -t edoburu/python-runner:sphinx sphinx/
   - docker build -t edoburu/python-runner:wkhtmltopdf wkhtmltopdf/
-  - docker tag edoburu/python-runner:base         registry.edoburu.nl/edoburu/python-runner:base
-  - docker tag edoburu/python-runner:ansible      registry.edoburu.nl/edoburu/python-runner:ansible
-  - docker tag edoburu/python-runner:sphinx       registry.edoburu.nl/edoburu/python-runner:sphinx
-  - docker tag edoburu/python-runner:wkhtmltopdf  registry.edoburu.nl/edoburu/python-runner:wkhtmltopdf
-  - docker tag edoburu/python-runner:base         registry.edoburu.nl/edoburu/python-runner:latest
+  - docker tag edoburu/python-runner:base         registry.edoburu.nl/edoburu/docker-python-runner:base
+  - docker tag edoburu/python-runner:ansible      registry.edoburu.nl/edoburu/docker-python-runner:ansible
+  - docker tag edoburu/python-runner:sphinx       registry.edoburu.nl/edoburu/docker-python-runner:sphinx
+  - docker tag edoburu/python-runner:wkhtmltopdf  registry.edoburu.nl/edoburu/docker-python-runner:wkhtmltopdf
+  - docker tag edoburu/python-runner:base         registry.edoburu.nl/edoburu/docker-python-runner:latest
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN  registry.edoburu.nl
-  - docker push registry.edoburu.nl/edoburu/python-runner:base
-  - docker push registry.edoburu.nl/edoburu/python-runner:latest
-  - docker push registry.edoburu.nl/edoburu/python-runner:sphinx
-  - docker push registry.edoburu.nl/edoburu/python-runner:ansible
-  - docker push registry.edoburu.nl/edoburu/python-runner:wkhtmltopdf
+  - docker push registry.edoburu.nl/edoburu/docker-python-runner:base
+  - docker push registry.edoburu.nl/edoburu/docker-python-runner:latest
+  - docker push registry.edoburu.nl/edoburu/docker-python-runner:sphinx
+  - docker push registry.edoburu.nl/edoburu/docker-python-runner:ansible
+  - docker push registry.edoburu.nl/edoburu/docker-python-runner:wkhtmltopdf
