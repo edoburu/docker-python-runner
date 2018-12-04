@@ -21,6 +21,7 @@
 FROM debian:buster-slim
 MAINTAINER opensource@edoburu.nl
 ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
     XDG_CACHE_HOME=/cache \
     PIP_CACHE_DIR=/cache/pip
 RUN mkdir -p /cache && \
