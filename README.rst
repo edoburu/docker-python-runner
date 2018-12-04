@@ -5,7 +5,7 @@ This image can be used to run a Python project (e.g. unit tests)
 and install Python packages that require C-extensions.
 
 The image consists of a base Debian jessie install,
-with both Python 2.7, Python 3.4 and development packages added
+with both Python 2.7, Python 3.6 and development packages added
 to install projects such as: : ``Pillow``, ``psycopg2``, ``pylibmc``,
 ``lxml``, ``cffi``, ``reportlab``.
 
@@ -22,22 +22,8 @@ Building the containers
 
 .. code-block:: bash
 
-    docker build -t edoburu/python-runner:base base/
-    docker build -t edoburu/python-runner:ansible ansible/
-    docker build -t edoburu/python-runner:sphinx sphinx/
-    docker build -t edoburu/python-runner:wkhtmltopdf wkhtmltopdf/
-    docker tag edoburu/python-runner:base edoburu/python-runner:latest
-
-Updating on dockerhub:
-
-.. code-block:: bash
-
-    docker login
-    docker push edoburu/python-runner:base
-    docker push edoburu/python-runner:latest
-    docker push edoburu/python-runner:sphinx
-    docker push edoburu/python-runner:ansible
-    docker push edoburu/python-runner:wkhtmltopdf
+    make all
+    make push
 
 Usage in GitLab
 ---------------
@@ -73,7 +59,6 @@ For deployment, you can use the other image types:
       image: edoburu/python-runner:ansible
       stage: deploy
       script:
-      - export ANSIBLE_FORCE_COLOR=true
       - cd deployment
       - ansible-playbook deploy.yml --limit="$CI_BUILD_REF_NAME" --extra-vars="git_branch=$CI_BUILD_REF"
       only:

@@ -10,6 +10,7 @@
 # so that needs to be present as well. ssh is available for the transport support.
 
 FROM edoburu/python-runner:base
+ENV ANSIBLE_FORCE_COLOR=true
 RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-client dnsutils && \
     apt-get clean && \
