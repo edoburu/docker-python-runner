@@ -12,4 +12,4 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends rsync graphviz libgraphviz-dev fonts-liberation && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /var/cache/debconf/*-old && \
-    pip install --no-cache-dir Sphinx sphinx_rtd_theme
+    pip3 install --no-cache-dir Sphinx sphinx_rtd_theme

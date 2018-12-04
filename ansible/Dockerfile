@@ -14,4 +14,4 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-client dnsutils && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /var/cache/debconf/*-old && \
-    pip install --no-cache-dir 'ansible<2.0' httplib2
+    pip3 install --no-cache-dir ansible httplib2

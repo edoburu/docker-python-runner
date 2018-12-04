@@ -18,7 +18,7 @@
 # - Git is extracted over the filesystem to avoid perl dependencies, avoiding another 100MB.
 # - The ssh client is included to support git+ssh URLs
 
-FROM debian:jessie
+FROM debian:buster-slim
 MAINTAINER opensource@edoburu.nl
 ENV DEBIAN_FRONTEND=noninteractive \
     XDG_CACHE_HOME=/cache \
@@ -29,15 +29,14 @@ RUN mkdir -p /cache && \
 	sh -c 'echo 'Acquire::Languages "none;"' > /etc/apt/apt.conf.d/no-lang' && \
 	apt-get update && \
 	apt-get install --no-install-recommends -y \
-		python python3 python-setuptools python3-setuptools \
+		python python3 \
 		make gcc pkg-config libffi-dev libgeoip1 libjpeg-dev libmemcached-dev libpq-dev libssl-dev libxml2-dev libxslt1-dev libyaml-dev python-dev python3-dev \
 		openssh-client libcurl3-gnutls ca-certificates gettext rsync && \
 	apt-get download git && dpkg -x git_* / && rm git_* && \
 	apt-get clean && \
-	cp -R /usr/share/locale/en\@* /tmp/ && rm -rf /usr/share/locale/* && mv /tmp/en\@* /usr/share/locale/ && \
-    rm -rf /usr/share/doc/* /var/lib/apt/lists/* /var/cache/debconf/*-old
-
-# Make sure the latest pip is installed, not the 1.5.6 version from Debian
-# This also results in a very clean system-packages folder, making virtualenv almost unneeded
-# This is done as separate layer to make it easy to reconfigure this.
-RUN easy_install3 pip virtualenv wheel && easy_install-2.7 pip virtualenv wheel && pip install -U setuptools && pip3 install -U setuptools
+	rm -rf /usr/share/locale/* /usr/share/doc/* /var/lib/apt/lists/* /var/cache/debconf/*-old && \
+    # Make sure the latest pip is installed, not the old version from Debian
+	python -c 'import urllib; urllib.urlretrieve("https://bootstrap.pypa.io/get-pip.py", "get-pip.py")' && \
+	python2 get-pip.py && pip2 install virtualenv && \
+	python3 get-pip.py && pip3 install virtualenv && \
+	rm get-pip.py
